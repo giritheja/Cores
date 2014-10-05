@@ -1,0 +1,24 @@
+#logo{
+	background:url(./images/surthkal.png) no-repeat;
+	background-size:cover;
+	position:absolute;
+	height:500px;
+	width:500px;
+	left:32%;
+	top:20%;
+}
+#login{
+		position:absolute;
+		left:25%;
+		top:14%;
+	
+}
+input{
+	width:204px;
+	height:40px;
+	margin:20px;
+	background-color:#DCCAA6;
+	font-size:1.5em;
+	text-align:center;
+	font-family: 'Lobster', cursive;
+	}
