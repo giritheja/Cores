@@ -2,6 +2,9 @@
 	font-family: 'Lobster', cursive;
 	overflow-x:hidden;
 	}
+body,html{
+	margin:0;
+}
 #logo{
 	background:url(./images/surthkal.png) no-repeat;
 	background-size:cover;
