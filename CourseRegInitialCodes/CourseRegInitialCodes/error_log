@@ -1,0 +1,25 @@
+[16-Nov-2013 03:24:44 America/Chicago] PHP Fatal error:  Call to undefined method FGMembersite::UserId() in /home/collegen/public_html/nitkmechtest/access-controlled.php on line 24
+[16-Nov-2013 03:25:01 America/Chicago] PHP Fatal error:  Call to undefined method FGMembersite::UserId() in /home/collegen/public_html/nitkmechtest/access-controlled.php on line 24
+[16-Nov-2013 03:26:15 America/Chicago] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/collegen/public_html/nitkmechtest/electives.php on line 28
+[16-Nov-2013 03:29:53 America/Chicago] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/collegen/public_html/nitkmechtest/electives.php on line 29
+[16-Nov-2013 03:30:53 America/Chicago] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting ',' or ';' in /home/collegen/public_html/nitkmechtest/electives.php on line 29
+[16-Nov-2013 03:41:00 America/Chicago] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/collegen/public_html/nitkmechtest/electives.php on line 33
+[16-Nov-2013 03:45:25 America/Chicago] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/collegen/public_html/nitkmechtest/electives.php on line 39
+[16-Nov-2013 03:47:03 America/Chicago] PHP Parse error:  syntax error, unexpected '}' in /home/collegen/public_html/nitkmechtest/electives.php on line 33
+[16-Nov-2013 03:50:35 America/Chicago] PHP Parse error:  syntax error, unexpected T_STRING in /home/collegen/public_html/nitkmechtest/electives.php on line 26
+[16-Nov-2013 04:37:15 America/Chicago] PHP Parse error:  syntax error, unexpected '<' in /home/collegen/public_html/nitkmechtest/electives.php on line 24
+[16-Nov-2013 04:39:02 America/Chicago] PHP Parse error:  syntax error, unexpected '<' in /home/collegen/public_html/nitkmechtest/electives.php on line 25
+[16-Nov-2013 04:41:37 America/Chicago] PHP Parse error:  syntax error, unexpected T_VARIABLE, expecting ',' or ';' in /home/collegen/public_html/nitkmechtest/electives.php on line 28
+[16-Nov-2013 04:48:33 America/Chicago] PHP Fatal error:  Call to a member function UserFullName() on a non-object in /home/collegen/public_html/nitkmechtest/electives.php on line 23
+[16-Nov-2013 04:50:38 America/Chicago] PHP Fatal error:  Call to a member function UserFullName() on a non-object in /home/collegen/public_html/nitkmechtest/electives.php on line 25
+[16-Nov-2013 04:59:36 America/Chicago] PHP Fatal error:  Call to a member function UserFullName() on a non-object in /home/collegen/public_html/nitkmechtest/electives.php on line 25
+[16-Nov-2013 05:01:49 America/Chicago] PHP Fatal error:  Call to a member function UserFullName() on a non-object in /home/collegen/public_html/nitkmechtest/electives.php on line 39
+[16-Nov-2013 06:23:26 America/Chicago] PHP Fatal error:  Call to undefined function get_currentuserinfo() in /home/collegen/public_html/nitkmechtest/access-controlled.php on line 30
+[16-Nov-2013 06:30:02 America/Chicago] PHP Fatal error:  Call to a member function UserFullName() on a non-object in /home/collegen/public_html/nitkmechtest/electives.php on line 30
+[16-Nov-2013 07:44:45 America/Chicago] PHP Parse error:  syntax error, unexpected ';' in /home/collegen/public_html/nitkmechtest/elec.php on line 93
+[16-Nov-2013 07:44:47 America/Chicago] PHP Parse error:  syntax error, unexpected ';' in /home/collegen/public_html/nitkmechtest/elec.php on line 93
+[28-Nov-2013 03:28:10 America/Chicago] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/collegen/public_html/nitkmechtest/include/fg_membersite.php on line 757
+[28-Nov-2013 03:32:06 America/Chicago] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/collegen/public_html/nitkmechtest/include/fg_membersite.php on line 757
+[28-Nov-2013 03:45:48 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/collegen/public_html/nitkmechtest/elec.php on line 84
+[28-Nov-2013 03:46:03 America/Chicago] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/collegen/public_html/nitkmechtest/electives.php on line 55
+[28-Nov-2013 06:43:16 America/Chicago] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home/collegen/public_html/nitkmechtest/electives.php on line 24
