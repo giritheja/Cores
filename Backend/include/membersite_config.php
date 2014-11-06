@@ -14,10 +14,10 @@ $fgmembersite->SetAdminEmail('abp.11m106@nitk.edu.in');
 //note that the script will create the table (for example, fgusers in this case)
 //by itself on submitting register.php for the first time
 $fgmembersite->InitDB(/*hostname*/'localhost',
-                      /*username*/'collegen_mech',
-                      /*password*/'[O1pW{p42xHD',
-                      /*database name*/'collegen_nitkmech',
-                      /*table name*/'mechdept');
+                      /*username*/'root',
+                      /*password*/'',
+                      /*database name*/'student_data'
+                      );
 
 //For better security. Get a random string from this link: http://tinyurl.com/randstr
 // and put it here

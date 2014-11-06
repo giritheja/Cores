@@ -42,15 +42,18 @@ class FGMembersite
         $this->rand_key = '0iQx5oBk66oVZep';
     }
     
-    function InitDB($host,$uname,$pwd,$database,$tablename)
+    function InitDB($host,$uname,$pwd,$database)
     {
         $this->db_host  = $host;
         $this->username = $uname;
         $this->pwd  = $pwd;
         $this->database  = $database;
-        $this->tablename = $tablename;
-        
-    }
+	}
+	function table($tablename)
+	{
+	
+		$this->tablename = $tablename;
+	}
     function SetAdminEmail($email)
     {
         $this->admin_email = $email;
@@ -134,7 +137,7 @@ class FGMembersite
         
         $username = trim($_POST['username']);
         $password = trim($_POST['password']);
-        
+        $this->table(substr($_POST['username'],2,2));
         if(!isset($_SESSION)){ session_start(); }
         if(!$this->CheckLoginInDB($username,$password))
         {
@@ -168,7 +171,14 @@ class FGMembersite
     {
         return isset($_SESSION['email_of_user'])?$_SESSION['email_of_user']:'';
     }
-		
+	function branch()
+	{
+		return isset($_SESSION['branch'])?$_SESSION['branch']:'';
+	}
+	function year()
+	{
+		return isset($_SESSION['year'])?$_SESSION['year']:'';
+	}
 	function elec1()
     {
         return isset($_SESSION['ele1'])?$_SESSION['ele1']:'';
@@ -390,6 +400,9 @@ class FGMembersite
         
         $_SESSION['name_of_user']  = $row['name'];
         $_SESSION['email_of_user'] = $row['email'];
+		$year=substr($username,0,2);
+        $_SESSION['year']=(int)$year;
+		$_SESSION['branch']=substr($username,2,2);
 		$_SESSION['ele1'] = $row['elective1'];
 		$_SESSION['ele2'] = $row['elective2'];
 		$_SESSION['ele3'] = $row['elective3'];
@@ -640,7 +653,8 @@ class FGMembersite
 		$formvars['feereceipt'] = $this->Sanitize($_POST['feereceipt']);
 		$formvars['bankname'] = $this->Sanitize($_POST['bankname']);
 		$formvars['cgpa'] = $this->Sanitize($_POST['cgpa']);
-    }
+		$this->table(substr($_POST['username'],2,2));
+	}
     
     function SendUserConfirmationEmail(&$formvars)
     {
@@ -716,10 +730,10 @@ class FGMembersite
             $this->HandleError("Database login failed!");
             return false;
         }
-        if(!$this->Ensuretable())
+        /*if(!$this->Ensuretable())
         {
             return false;
-        }
+        }*/
         if(!$this->IsFieldUnique($formvars,'email'))
         {
             $this->HandleError("This email is already registered");
@@ -774,7 +788,7 @@ class FGMembersite
         return true;
     }    
     
-    function Ensuretable()
+   /* function Ensuretable()
     {
         $result = mysql_query("SHOW COLUMNS FROM $this->tablename");   
         if(!$result || mysql_num_rows($result) <= 0)
@@ -814,7 +828,7 @@ class FGMembersite
         }
         return true;
     }
-    
+    */
     function InsertIntoDB(&$formvars)
     {
     

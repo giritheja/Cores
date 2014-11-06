@@ -17,7 +17,7 @@ require_once("./include/membersite_config.php");
 
 
 //Connect to mysql server
-	$link = mysql_connect('localhost','collegen_mech','[O1pW{p42xHD');
+	$link = mysql_connect('localhost','root','');
 	if(!$link) {
 		die('Failed to connect to server: ' . mysql_error());
 	}

@@ -4,7 +4,7 @@ require_once("./include/membersite_config.php");
 if(isset($_POST['submitted']))
 {
    if($fgmembersite->RegisterUser())
-   {
+   {	
         $fgmembersite->RedirectToURL("thank-you.html");
    }
 }
@@ -46,7 +46,7 @@ if(isset($_POST['submitted']))
 </div>
 <div class='container'>
     <label for='username' >Roll No.*:</label><br/>
-    <input type='text' name='username' id='username' value='<?php echo $fgmembersite->SafeDisplay('username') ?>' maxlength="6" /><br/>
+    <input type='text' name='username' id='username' value='<?php echo $fgmembersite->SafeDisplay('username') ?>' maxlength="7" /><br/>
     <span id='register_username_errorloc' class='error'></span>
 </div>
 <div class='container' style='height:80px;'>

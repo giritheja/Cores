@@ -18,11 +18,12 @@ if(!$fgmembersite->CheckLogin())
 <body>
 <div id='fg_membersite_content'>
 <h2>Home Page</h2>
-Welcome back <?= $fgmembersite->UserFullName(); ?>!
-
+<h3>Welcome back <?= $fgmembersite->UserFullName();?>!
+</br>Branch:<?= $fgmembersite->branch();?>
+</br>Year:<?= $fgmembersite->Year();?></h3>
 <p><a href='change-pwd.php'>Change password</a></p>
 
-<p><a href='access-controlled.php'>Enter Elective Choices</a></p>
+<p><a href='access-controlled.php'>Select Courses</a></p>
 <br>
 <p><a href='electives.php'>View Submitted Choices</a></p>
 

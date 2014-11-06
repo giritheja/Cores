@@ -21,13 +21,13 @@ if(!$fgmembersite->CheckLogin())
 
 
 //Connect to mysql server
-	$link = mysql_connect('localhost','collegen_mech','[O1pW{p42xHD');
+	$link = mysql_connect('localhost','root','');
 	if(!$link) {
 		die('Failed to connect to server: ' . mysql_error());
 	}
 	
 	//Select database
-	$db = mysql_select_db('collegen_nitkmech');
+	$db = mysql_select_db('student_data');
 	if(!$db) {
 		die("Unable to select database");
 	}
@@ -41,26 +41,40 @@ if(!$fgmembersite->CheckLogin())
 		return mysql_real_escape_string($str);
 	}
 	
-	$elective1 = clean($_POST['elective1']);
-	$elective2 = clean($_POST['elective2']);
-	$elective3 = clean($_POST['elective3']);
-	$core1 = clean($_POST['core1']);
-	$core2 = clean($_POST['core2']);
-	$core3 = clean($_POST['core3']);
-	$core4 = clean($_POST['core4']);
-	
-	$email = $fgmembersite->UserEmail(); ?>
+	$core=array();
+	$elective=array();
+	for($i=0,$j=0;$i<6;$i++)
+	{ 
+	if(isset($_POST["core$i"]))
+		{$core[$i] = $_POST["core$i"];	
+		$j++;
+		}
+	}
+	for($i=$j;$i<6;$i++)
+	{
+		$core[$i]='';
+	}
+	for($i=0,$j=0;$i<4;$i++)
+	{if(isset($_POST["elective$i"]))
+		{$elective[$i] = $_POST["elective$i"];	
+		$j++;
+		}
+	}
+	for($i=$j;$i<4;$i++)
+	{
+		$elective[$i]='';
+	}
+	$email = $fgmembersite->UserEmail();
+	$branch =$fgmembersite->branch();	?>
 	
 	<div id='fg_membersite_content'>
 <p>
 
 
-
-
 </p>
 <?php
-	$db_update = "UPDATE mechdept SET elective1 = '$elective1' , elective2 = '$elective2' , elective3 = '$elective3' , core1 = '$core1' , 
-core2 = '$core2' ,	core3 = '$core3' , core4 = '$core4'  WHERE email = '$email'";
+	$db_update = "UPDATE $branch SET elective1 = '$elective[0]' , elective2 = '$elective[1]' , elective3 = '$elective[2]' , elective4 = '$elective[3]', core1 = '$core[0]' , 
+core2 = '$core[1]' ,	core3 = '$core[2]' , core4 = '$core[3]', core5 = '$core[4]', core6 = '$core[5]'  WHERE email= '$email'";
 
 	mysql_query($db_update);
 	
@@ -72,7 +86,7 @@ core2 = '$core2' ,	core3 = '$core3' , core4 = '$core4'  WHERE email = '$email'";
 
 <div id='fg_membersite_content'>
 <p>
-Welcome to Dept of Mech Engineering <br>
+Welcome to Online Course Registration<br>
 Logged in as: <?= $fgmembersite->UserFullName() ?> <br>
 Email: <?= $fgmembersite->UserEmail() ?> <br>
 <br>
@@ -81,7 +95,7 @@ Email: <?= $fgmembersite->UserEmail() ?> <br>
 
 
 <?php
-$query = "SELECT * FROM mechdept WHERE email='$email'"; 
+$query = "SELECT * FROM $branch WHERE email='$email'"; 
 $result = mysql_query($query);
 
 
@@ -96,10 +110,21 @@ echo "<tr><td>Name</td><td>".$row['name']."</td></tr><tr><td>Roll No.</td><td>".
 echo "</table>";
 
 echo "<table border='2' cellpadding='4' cellspacing='2'>"; // start a table tag in the HTML
-echo "<br><tr><td><b>Course(Core/Elective) </b></td><td><b>Course Code | Course Title</b></td><td><b>Instructor's Sign &nbsp; &nbsp; &nbsp;</b></td></td></tr><tr><td>Elective1 </td><td>" . $row['elective1'] . "<br></td></tr><tr><td>Elective2 </td><td>" 
-. $row['elective2'] ."<br></td></tr><tr><td>Elective3 </td><td>" . $row['elective3'] ."<br></td></tr><tr><td>Core1 </td><td>" . $row['core1'] . "<br></td>
-</tr><tr><td>Core2 </td><td>" . $row['core2'] ."<br></td></tr><tr><td>Core3 </td><td>" . $row['core3'] ."<br></td>
-</tr><tr><td>Core4 </td><td>" . $row['core4'] ."<br></td></tr>";  
+echo "<br><tr><td><b>Course(Core/Elective) </b></td><td><b>Course Code | Course Title</b></td><td><b>Instructor's Sign &nbsp; &nbsp; &nbsp;</b></td></td></tr>";
+for($i=0;$i<4;$i++)
+{	$j=$i+1;
+if($row["elective$j"]=='')
+	break;
+else
+echo"<tr><td>Elective$j</td><td>". $row["elective$j"] . "<br></td></tr>";
+}
+for($i=0;$i<6;$i++)
+{	$j=$i+1;
+	if($row["core$j"]=='')
+	break;
+else
+echo"<tr><td>Core$j</td><td>" . $row["core$j"] . "<br></td></tr>"; 
+}
 }
 echo "</table>"; //Close the table in HTML
 
