@@ -16,13 +16,13 @@ require_once("./include/membersite_config.php");
 
 
 //Connect to mysql server
-	$link = mysql_connect('localhost','collegen_mech','[O1pW{p42xHD');
+	$link = mysql_connect('localhost','root','');
 	if(!$link) {
 		die('Failed to connect to server: ' . mysql_error());
 	}
 	
 	//Select database
-	$db = mysql_select_db('collegen_nitkmech');
+	$db = mysql_select_db('student_data');
 	if(!$db) {
 		die("Unable to select database");
 	}
@@ -36,9 +36,10 @@ require_once("./include/membersite_config.php");
 		return mysql_real_escape_string($str);
 	}
 	
-	$course = clean($_POST['course']);
+	$course = $_POST['course'];
 	$sort = clean($_POST['sort']);
-
+	$branch=substr($course,0,2);
+	$branch=strtolower($branch);
  ?>
 	
 	<div id='fg_membersite_content'>
@@ -62,20 +63,21 @@ require_once("./include/membersite_config.php");
 
 if($sort=='username')
 {
-    $query = "SELECT * FROM mechdept WHERE core1='$course' OR core2='$course' OR core3='$course' OR core4='$course' 
-OR elective1='$course' OR elective2='$course' OR elective3='$course' ORDER BY $sort "; 
+    $query = "SELECT * FROM $branch WHERE core1='$course' OR core2='$course' OR core3='$course' OR core4='$course' OR core5='$course' 
+OR core6='$course' OR elective1='$course' OR elective2='$course' OR elective3='$course' OR elective4='$course' ORDER BY $sort ";
+ 
 }
 
 else
-{	$query = "SELECT * FROM mechdept WHERE core1='$course' OR core2='$course' OR core3='$course' OR core4='$course' 
-OR elective1='$course' OR elective2='$course' OR elective3='$course' ORDER BY $sort DESC";
+{	$query = "SELECT * FROM $branch WHERE core1='$course' OR core2='$course' OR core3='$course' OR core4='$course' OR core5='$course' 
+OR core6='$course' OR elective1='$course' OR elective2='$course' OR elective3='$course' OR elective4='$course' ORDER BY $sort ";
 
 }
 
 
 $result = mysql_query($query);
 
-echo "<h3>List of Students in ".$course."&nbsp;(Sorted in order of ".$sort.")</h3><br>";
+echo "<h3>List of Students in ".$course."(Sorted in order of ".$sort.")</h3><br>";
 echo "<table border='2' cellpadding='4' cellspacing='2'>";
 echo "<tr><td>Name</td><td>Roll No</td><td>Phone No.</td><td>Fee Receipt No.</td><td>CGPA</td></tr>";
 while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results

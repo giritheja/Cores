@@ -38,27 +38,22 @@ require_once("./include/membersite_config.php");
 
 <div class='short_explanation'>* required fields</div>
 <input type='text'  class='spmhidip' name='<?php echo $fgmembersite->GetSpamTrapInputName(); ?>' />
-
-
+<?php 
+	$con=mysqli_connect('localhost','root','','dept');
+	$option=mysqli_query($con,'SELECT Code,Name FROM co ORDER BY Code ASC');
+	//Need to come up with code so as to carry out the above query on multiple tables.
+	
+	?>
 <div class='container'>
 
 <tr><td><label>Select Course</label></td><td></td></tr>
 
 <select name="course" id="course">
-<option value="ME350|Heat Transfer">ME350|Heat Transfer</option>
-<option value="ME351|Machine Dynamics & Vibrations">ME351|Machine Dynamics & Vibrations</option>
-<option value="ME352|Machine Shop – I">ME352|Machine Shop – I</option>
-<option value="HU300|Engineering Economics">HU300|Engineering Economics</option>
-<option value="1">E1</option>
-<option value="2">E2</option>
-<option value="3">E3</option>
-<option value="4">E4</option>
-<option value="5">E5</option>
-<option value="6">E6</option>
-<option value="7">E7</option>
-<option value="8">E8</option>
-<option value="9">E9</option>
-<option value="10">E10</option>
+<?php 
+	while ($options=mysqli_fetch_array($option)) 
+	{ 	echo"<option value='".$options["Code"].' | '.$options["Name"]."'>".$options["Code"].' | '.$options["Name"]."</option>";
+		}
+?>
 </select>
 
 
