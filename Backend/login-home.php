@@ -8,6 +8,46 @@ if(!$fgmembersite->CheckLogin())
 }
 
 ?>
+<?php
+
+
+
+//Connect to mysql server
+	$link = mysql_connect('mysql.freehosting2.com','u140079067_cores','sunny123');
+	if(!$link) {
+		die('Failed to connect to server: ' . mysql_error());
+	}
+	
+	//Select database
+	$db = mysql_select_db('u140079067_cores');
+	if(!$db) {
+		die("Unable to select database");
+	}
+	$email = $fgmembersite->UserEmail(); 
+	$branch= $fgmembersite->branch();
+	$query = "SELECT * FROM $branch WHERE email='$email'"; 
+$result = mysql_query($query);
+
+
+$courses=array();
+
+while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
+for($i=0;$i<4;$i++)
+{	$j=$i+1;
+if($row["elective$j"]=='')
+	break;
+else
+array_push($courses,$row["elective$j"]);
+}
+for($i=0;$i<6;$i++)
+{	$j=$i+1;
+	if($row["core$j"]=='')
+	break;
+else
+array_push($courses,$row["core$j"]);; 
+}
+}	
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
@@ -22,8 +62,12 @@ if(!$fgmembersite->CheckLogin())
 </br>Branch:<?= $fgmembersite->branch();?>
 </br>Year:<?= $fgmembersite->Year();?></h3>
 <p><a href='change-pwd.php'>Change password</a></p>
-
-<p><a href='access-controlled.php'>Select Courses</a></p>
+</div>
+<?php if(count($courses)>0)
+echo"<p><a href='access-controlled.php'>Change/Drop Courses</a></p>";
+else
+echo"<p><a href='access-controlled.php'>Select Courses</a></p>";
+?>
 <br>
 <p><a href='electives.php'>View Submitted Choices</a></p>
 

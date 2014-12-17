@@ -46,7 +46,7 @@ if(!$fgmembersite->CheckLogin())
 	for($i=0,$j=0;$i<6;$i++)
 	{ 
 	if(isset($_POST["core$i"]))
-		{$core[$i] = $_POST["core$i"];	
+		{$core[$j] = $_POST["core$i"];	
 		$j++;
 		}
 	}
@@ -56,7 +56,7 @@ if(!$fgmembersite->CheckLogin())
 	}
 	for($i=0,$j=0;$i<4;$i++)
 	{if(isset($_POST["elective$i"]))
-		{$elective[$i] = $_POST["elective$i"];	
+		{$elective[$j] = $_POST["elective$i"];	
 		$j++;
 		}
 	}
