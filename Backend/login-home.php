@@ -13,13 +13,13 @@ if(!$fgmembersite->CheckLogin())
 
 
 //Connect to mysql server
-	$link = mysql_connect('mysql.freehosting2.com','u140079067_cores','sunny123');
+	$link = mysql_connect('localhost','root','');
 	if(!$link) {
 		die('Failed to connect to server: ' . mysql_error());
 	}
 	
 	//Select database
-	$db = mysql_select_db('u140079067_cores');
+	$db = mysql_select_db('student_data');
 	if(!$db) {
 		die("Unable to select database");
 	}

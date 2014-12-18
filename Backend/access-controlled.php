@@ -48,8 +48,32 @@ Year: <?= $fgmembersite->year() ?>
 	$branch=$fgmembersite->branch();
 	$year=$fgmembersite->year();
 	$year=15-$year;
-$con= mysqli_connect('localhost','root','','dept');
-$result= mysqli_query($con,"SELECT * FROM $branch WHERE sem='1' ORDER BY Type ASC");
+	$con= mysqli_connect('localhost','root','','dept');
+	$result= mysqli_query($con,"SELECT * FROM $branch WHERE sem='2' ORDER BY Type ASC");
+	$link = mysqli_connect('localhost','root','','student_data');
+	$email = $fgmembersite->UserEmail(); 
+	$branch= $fgmembersite->branch();
+	$query = "SELECT * FROM $branch WHERE email='$email'"; 
+	$out = mysqli_query($link,$query);
+	$core=array();
+	$elective=array();
+while($row = mysqli_fetch_array($out)){   //Creates a loop to loop through results
+for($i=0;$i<4;$i++)
+{	$j=$i+1;
+if($row["elective$j"]=='')
+	break;
+else
+array_push($elective,substr($row["elective$j"],0,5));
+}
+for($i=0;$i<6;$i++)
+{	$j=$i+1;
+	if($row["core$j"]=='')
+	break;
+else
+array_push($core,substr($row["core$j"],0,5)); 
+}
+}	
+
 $i=0;$j=0;
 echo"<table border=\"2px\" cellpadding=\"35px\">";
 echo"<tr><td><strong>Course Code</td><td><strong>Name of the Course Name</td><td><strong>Type</td><td><strong>Credits</td><td><strong>Select</td></tr>";
@@ -58,12 +82,33 @@ while($result1= mysqli_fetch_array($result))
 	if($year==$ryear)
 	{$value= $result1['Code'].' | '.$result1['Name'];
 	if($result1['Type']=='Core')
-	{
-		echo"<tr><td>".$result1['Code']."</td><td><strong>".$result1['Name']."</td><td>".$result1['Type']."</td><td>".$result1['Credits']."</td><td><input type=\"checkbox\" name=\"core$i\" value=\"$value\"></td></tr>";
+	{	$trig=0;	
+		for($c=0;$c<count($core);$c++){
+			if(strcasecmp($core[$c], $result1['Code'])==0)
+			{echo"<tr><td>".$result1['Code']."</td><td><strong>".$result1['Name']."</td><td>".$result1['Type']."</td><td>".$result1['Credits']."</td><td><input type=\"checkbox\" name=\"core$i\" value=\"$value\" checked></td></tr>";
+				$trig=1;
+				break;
+			}
+			}
+			if ($trig==0) {
+			echo"<tr><td>".$result1['Code']."</td><td><strong>".$result1['Name']."</td><td>".$result1['Type']."</td><td>".$result1['Credits']."</td><td><input type=\"checkbox\" name=\"core$i\" value=\"$value\"></td></tr>";	
+			}
+	
 	$i++;
 	}
 	else
-	{echo"<tr><td>".$result1['Code']."</td><td><strong>".$result1['Name']."</td><td>".$result1['Type']."</td><td>".$result1['Credits']."</td><td><input type=\"checkbox\" name=\"elective$j\" value=\"$value\"></td></tr>";
+	{	$trig=0;
+		for($c=0;$c<count($elective);$c++){
+		if(strcasecmp($elective[$c], $result1['Code'])==0){
+		echo"<tr><td>".$result1['Code']."</td><td><strong>".$result1['Name']."</td><td>".$result1['Type']."</td><td>".$result1['Credits']."</td><td><input type=\"checkbox\" name=\"elective$j\" value=\"$value\" checked></td></tr>";
+			$trig=1;
+			break;
+		}
+		}
+		if($trig==0){
+		echo"<tr><td>".$result1['Code']."</td><td><strong>".$result1['Name']."</td><td>".$result1['Type']."</td><td>".$result1['Credits']."</td><td><input type=\"checkbox\" name=\"elective$j\" value=\"$value\" ></td></tr>";	
+		}
+	
 	$j++;
 	}
 }	
