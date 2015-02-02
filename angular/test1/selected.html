@@ -1,0 +1,20 @@
+<html>
+<head>
+<title>Selected Courses</title>
+<style>table{
+	padding:50px;	
+
+}</style>
+</head>
+<body>
+
+<p laign="center"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Selected Courses are:</b></p>
+<br>
+<table align="center" >
+
+<tr style="padding:50px"><td>Code</td><td>Name</td><td>Credits</td><td>Type</td></tr>
+<tr ng-repeat="course in courses" ng-show="course.selected"><td>{{course.Code}}</td><td>{{course.Name}}</td><td>{{course.Credits}}</td><td>{{course.Type}}</td></tr>
+	
+</table>
+</body>
+</html>
