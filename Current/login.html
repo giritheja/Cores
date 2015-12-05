@@ -1,0 +1,40 @@
+<div ng-include="'navbar.html'" ng-controller="navCtrl">
+</div>
+
+<form>
+<div>
+<fieldset >
+<style>
+.container .jumbotron{
+	padding-left: 40%;
+	background-color: #ffffff;
+}
+</style>
+<div class = "container" width="400px" style="padding-top:100px" height="400px">
+
+<div class="center jumbotron" background-color="#e9eaed">
+<div class='short_explanation'>* required fields</div>
+<legend>Login</legend>
+<div><span class='error'></span></div>
+<form role="form">
+<div class='container'>
+    <label for='username' >Roll No*:</label><br/>
+    <input type='text' name='username' id='username'  maxlength="7" ng-model="username" required/><br/>
+    <span id='login_username_errorloc' class='error'></span>
+</div>
+<div class='container'>
+    <label for='password' >Password*:</label><br/>
+    <input type='password' name='password' id='password' maxlength="50" ng-model="password" required/><br/>
+    <span id='login_password_errorloc' class='error'></span>
+</div>
+<p>{{message}}</p>
+<div class='short_explanation'><a href='/'>Forgot Password?</a></div>
+<div class='container'>
+    <input type='submit' name='Submit' value='Submit' ng-click="login()" />
+</div>
+</form>
+</div>
+</div>
+</fieldset>
+</div>
+</form>

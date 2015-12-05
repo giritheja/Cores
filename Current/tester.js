@@ -63,6 +63,22 @@ app.service('loggedIn', function() {
 
     };
 });
+app.controller('navCtrl',['$scope','$http','$location','loggedIn',function($scope,$http,$location,loggedIn) {
+    $scope.login=loggedIn.getProperty();
+    console.log($scope.login);
+    $scope.logout = function() {
+            if (loggedIn.getProperty()) {
+                $scope.loggedIn = false;
+                loggedIn.setProperty(false);
+                loggedIn.setUsername([]);
+                $location.path('/');
+                console.log("hello"); //for testing purpose
+            } else {
+                $location.path('/');
+            }
+        };
+}])
+
 app.controller('regCtr',['$scope','$http','$location','loggedIn',function($scope,$http,$location,loggedIn) {
 	if (true){
 		$scope.register=function(){
@@ -184,7 +200,8 @@ app.controller('loginCtr', ['$scope', '$http', '$location', 'loggedIn', function
 
                 })
                 .success(function(data, status, headers, config) {
-                    if (data) {
+                    console.log(data);
+                    if (data=='true') {
                         loggedIn.setProperty(true); //if the user is valid then set the properties of the loggedIn service
                         loggedIn.setUsername($scope.username);
                         $scope.log=loggedIn.getProperty();

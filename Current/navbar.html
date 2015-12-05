@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default" ng-controller="loginCtr">
+<nav class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="/">Online Course Registration</a>
@@ -8,6 +8,7 @@
         <li><a href="#courses"><i class="fa fa-shield"></i> Courses</a></li>
         <li><a href="#submission"><i class="fa fa-comment"></i> Submission</a></li>
         
-      	<li ><a href="#login"><i class="fa fa-shield"></i>Login</a></li>
+        <li><a ng-hide="login" href="#login"><i class="fa fa-shield"></i>Login</a></li>
+      	<li><a ng-show="login" href="#" ng-click="logout()"><i class="fa fa-shield"></i>Logout</a></li>
       </ul>
   </nav>

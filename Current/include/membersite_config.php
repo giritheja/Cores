@@ -15,7 +15,7 @@ $fgmembersite->SetAdminEmail('abp.11m106@nitk.edu.in');
 //by itself on submitting register.php for the first time
 $fgmembersite->InitDB(/*hostname*/'localhost',
                       /*username*/'root',
-                      /*password*/'',
+                      /*password*/'root',
                       /*database name*/'student_data'
                       );
 

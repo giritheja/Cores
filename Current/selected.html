@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Selected Courses</title>
+<style>table{
+	padding:50px;	
+
+}</style>
+</head>
+<body>
+<style>
+	#sublist{
+		background-color: goldenrod;
+	}
+	table{
+		    border-color: black;
+    border-style: inset;
+    border-radius: 5px;
+    border-bottom-width: thick;
+    border-spacing: 10px;
+	}
+</style>
+<div ng-include="'navbar.html'" ng-controller="navCtrl">
+</div>
+<div class = "container" width="400px" style="padding-top:100px" height="400px">
+<div class="center jumbotron" id="sublist">
+<p laign="center"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Selected Courses are:</b></p>
+<br>
+<table align="center">
+
+<tr style="padding:50px"><td>Code</td><td>Name</td><td>Credits</td><td>Type</td><td>Teacher</td></tr>
+<tr ng-repeat="course in courses" ng-show="course.selected"><td>{{course.Code}}</td><td>{{course.Name}}</td><td>{{course.Credits}}</td><td>{{course.Type}}</td><td>Dr.Awesome Kumar</td></tr>
+	
+</table>
+
+</div>
+</div></body>
+</html>
